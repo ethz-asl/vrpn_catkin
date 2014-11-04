@@ -11,7 +11,11 @@ file(MAKE_DIRECTORY ${CATKIN_DEVEL_PREFIX}/include/vrpn)
 ExternalProject_Add(vrpn_src
   URL http://www.cs.unc.edu/Research/vrpn/downloads/vrpn_07_31.zip
   UPDATE_COMMAND ""
-  CONFIGURE_COMMAND cmake ../vrpn_src
+  CONFIGURE_COMMAND cmake ../vrpn_src -DVRPN_BUILD_SERVERS:BOOL=OFF
+                                      -DVRPN_BUILD_SERVER_LIBRARY:BOOL=OFF
+									  -DCMAKE_OSX_ARCHITECTURES:STRING=x86_64
+									  -DVRPN_BUILD_JAVA:BOOL=OFF
+									  -DVRPN_BUILD_PYTHON_HANDCODED_2X:BOOL=OFF
   BUILD_COMMAND make -j8
   INSTALL_COMMAND cp libvrpn.a ${CATKIN_DEVEL_PREFIX}/lib/ &&
                   cp ../vrpn_src/vrpn_Tracker.h ${CATKIN_DEVEL_PREFIX}/include/vrpn &&
