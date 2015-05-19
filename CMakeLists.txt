@@ -19,7 +19,11 @@ ExternalProject_Add(vrpn_src
   BUILD_COMMAND make -j8
   INSTALL_COMMAND cp libvrpn.a ${CATKIN_DEVEL_PREFIX}/lib/ &&
                   cp ../vrpn_src/vrpn_Tracker.h ${CATKIN_DEVEL_PREFIX}/include/vrpn &&
-                  cp ../vrpn_src/vrpn_Connection.h ${CATKIN_DEVEL_PREFIX}/include/vrpn
+                  cp ../vrpn_src/vrpn_Connection.h ${CATKIN_DEVEL_PREFIX}/include/vrpn &&
+                  cp ../vrpn_src/vrpn_Configure.h ${CATKIN_DEVEL_PREFIX}/include/vrpn &&
+                  cp ../vrpn_src/vrpn_Shared.h ${CATKIN_DEVEL_PREFIX}/include/vrpn &&
+                  cp ../vrpn_src/vrpn_Types.h ${CATKIN_DEVEL_PREFIX}/include/vrpn &&
+                  cp ../vrpn_src/vrpn_BaseClass.h ${CATKIN_DEVEL_PREFIX}/include/vrpn
 )
 
 cs_add_library(${PROJECT_NAME} src/dependency_tracker.cc)
