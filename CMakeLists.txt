@@ -15,7 +15,6 @@ ExternalProject_Add(vrpn_src
                                       -DVRPN_BUILD_SERVER_LIBRARY:BOOL=OFF
                                       -DCMAKE_OSX_ARCHITECTURES:STRING=x86_64
                                       -DVRPN_BUILD_JAVA:BOOL=OFF
-                                      -DVRPN_BUILD_PYTHON_HANDCODED_2X:BOOL=OFF
                                       -DVRPN_BUILD_PYTHON:BOOL=OFF
   BUILD_COMMAND make -j8
   INSTALL_COMMAND cp libvrpn.a ${CATKIN_DEVEL_PREFIX}/lib/ &&
