@@ -12,7 +12,6 @@ ExternalProject_Add(vrpn_src
   URL https://github.com/vrpn/vrpn/archive/version_07.31.zip
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND cmake ../vrpn_src -DVRPN_BUILD_SERVERS:BOOL=OFF
-                                      -DVRPN_BUILD_SERVER_LIBRARY:BOOL=OFF
                                       -DCMAKE_OSX_ARCHITECTURES:STRING=x86_64
                                       -DVRPN_BUILD_JAVA:BOOL=OFF
                                       -DVRPN_BUILD_PYTHON_HANDCODED_2X:BOOL=OFF
