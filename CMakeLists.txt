@@ -9,7 +9,7 @@ include(ExternalProject)
 file(MAKE_DIRECTORY ${CATKIN_DEVEL_PREFIX}/include/vrpn)
 
 ExternalProject_Add(vrpn_src
-  URL https://github.com/vrpn/vrpn/archive/version_07.31.zip
+  URL https://github.com/vrpn/vrpn/archive/version_07.34.zip
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND cmake ../vrpn_src -DVRPN_BUILD_SERVERS:BOOL=OFF
                                       -DCMAKE_OSX_ARCHITECTURES:STRING=x86_64
@@ -18,17 +18,22 @@ ExternalProject_Add(vrpn_src
                                       -DVRPN_BUILD_PYTHON:BOOL=OFF
   BUILD_COMMAND make -j8
   INSTALL_COMMAND cp libvrpn.a ${CATKIN_DEVEL_PREFIX}/lib/ &&
+                  cp quat/libquat.a ${CATKIN_DEVEL_PREFIX}/lib/ &&
                   cp ../vrpn_src/vrpn_Tracker.h ${CATKIN_DEVEL_PREFIX}/include/vrpn &&
+                  cp ../vrpn_src/vrpn_Thread.h ${CATKIN_DEVEL_PREFIX}/include/vrpn &&
                   cp ../vrpn_src/vrpn_Connection.h ${CATKIN_DEVEL_PREFIX}/include/vrpn &&
                   cp ../vrpn_src/vrpn_Configure.h ${CATKIN_DEVEL_PREFIX}/include/vrpn &&
                   cp ../vrpn_src/vrpn_Shared.h ${CATKIN_DEVEL_PREFIX}/include/vrpn &&
                   cp ../vrpn_src/vrpn_Types.h ${CATKIN_DEVEL_PREFIX}/include/vrpn &&
-                  cp ../vrpn_src/vrpn_BaseClass.h ${CATKIN_DEVEL_PREFIX}/include/vrpn
+                  cp ../vrpn_src/vrpn_EndpointContainer.h ${CATKIN_DEVEL_PREFIX}/include/vrpn &&
+                  cp ../vrpn_src/vrpn_Assert.h ${CATKIN_DEVEL_PREFIX}/include/vrpn &&
+                  cp ../vrpn_src/vrpn_BaseClass.h ${CATKIN_DEVEL_PREFIX}/include/vrpn && 
+                  cp ../vrpn_src/quat/quat.h ${CATKIN_DEVEL_PREFIX}/include/vrpn
 )
 
 cs_add_library(${PROJECT_NAME} src/dependency_tracker.cc)
 add_dependencies(${PROJECT_NAME} vrpn_src)
-target_link_libraries(${PROJECT_NAME} ${CATKIN_DEVEL_PREFIX}/lib/libvrpn.a)
+target_link_libraries(${PROJECT_NAME} ${CATKIN_DEVEL_PREFIX}/lib/libvrpn.a ${CATKIN_DEVEL_PREFIX}/lib/libquat.a)
 
 cs_install()
 
