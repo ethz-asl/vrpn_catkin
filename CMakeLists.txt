@@ -9,7 +9,7 @@ include(ExternalProject)
 file(MAKE_DIRECTORY ${CATKIN_DEVEL_PREFIX}/include/vrpn)
 
 ExternalProject_Add(vrpn_src
-  URL https://github.com/vrpn/vrpn/archive/version_07.31.zip
+  URL https://github.com/vrpn/vrpn/archive/version_07.34.zip
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND cmake ../vrpn_src -DVRPN_BUILD_SERVERS:BOOL=OFF
                                       -DCMAKE_OSX_ARCHITECTURES:STRING=x86_64
