@@ -1,12 +1,13 @@
-<package format="2">
-  <name>vrpn_catkin</name>
+?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>vrpn_vendor</name>
   <version>0.0.0</version>
-  <description>vrpn_catkin</description>
+  <description>vrpn_vendor</description>
   <maintainer email="gohlp@ethz.ch">Pascal Gohl</maintainer>
 
   <license>See package</license>
 
-  <buildtool_depend>catkin</buildtool_depend>
-  <buildtool_depend>catkin_simple</buildtool_depend>
+  <buildtool_depend>ament_cmake</buildtool_depend>
 
 </package>
