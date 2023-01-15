@@ -2,10 +2,11 @@ cmake_minimum_required(VERSION 3.5)
 project(vrpn_vendor)
 
 find_package(ament_cmake REQUIRED)
+ament_add_default_options()
 
 include(ExternalProject)
 
-ExternalProject_Add(vrpn_src
+ExternalProject_Add(vrpn
   GIT_REPOSITORY https://github.com/vrpn/vrpn
   GIT_TAG df744e3cb61ef390b0b2fd5382b5be0340f80914
   GIT_CONFIG advice.detachedHead=false
@@ -18,13 +19,12 @@ ExternalProject_Add(vrpn_src
               -DCMAKE_INSTALL_PREFIX=${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}_install
 )
 
-add_library(${PROJECT_NAME} src/dependency_tracker.cc)
-add_dependencies(${PROJECT_NAME} vrpn_src)
-target_link_libraries(${PROJECT_NAME} /lib/libvrpn.a ${CATKIN_DEVEL_PREFIX}/lib/libquat.a)
+# add_library(${PROJECT_NAME} src/dependency_tracker.cc)
+# add_dependencies(${PROJECT_NAME} vrpn)
+# target_link_libraries(${PROJECT_NAME} vrpn)
 
 ament_export_include_directories(include)
-ament_export_libraries(vrpn)
-ament_export_dependencies(vrpn)
+ament_export_libraries(vrpn quat)
 
 install(
   DIRECTORY
