@@ -34,4 +34,12 @@ install(
   USE_SOURCE_PERMISSIONS
 )
 
+# Testing
+if(BUILD_TESTING)
+  # Test linting
+  find_package(ament_lint_auto REQUIRED)
+  ament_lint_auto_find_test_dependencies()
+
+endif()
+
 ament_package()
