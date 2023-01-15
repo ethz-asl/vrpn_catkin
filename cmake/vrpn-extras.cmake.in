@@ -1,3 +1,0 @@
-# This overrides the dependency tracker with the vrpn library file.
-set( @PROJECT_NAME@_LIBRARIES 
-	@CATKIN_DEVEL_PREFIX@/lib/libvrpn.a @CATKIN_DEVEL_PREFIX@/lib/libquat.a pthread)

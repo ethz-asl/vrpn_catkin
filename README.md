@@ -1,4 +1,4 @@
-vrpn_catkin
+vrpn_vendor
 ===========
 
-Catkin wrapper for http://www.cs.unc.edu/Research/vrpn/
+Colcon wrapper for http://www.cs.unc.edu/Research/vrpn/
