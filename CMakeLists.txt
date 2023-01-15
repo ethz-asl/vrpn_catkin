@@ -6,7 +6,7 @@ ament_add_default_options()
 
 include(ExternalProject)
 
-ExternalProject_Add(vrpn
+externalproject_add(vrpn
   GIT_REPOSITORY https://github.com/vrpn/vrpn
   GIT_TAG df744e3cb61ef390b0b2fd5382b5be0340f80914
   GIT_CONFIG advice.detachedHead=false
