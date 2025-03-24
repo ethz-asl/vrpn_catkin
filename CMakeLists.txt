@@ -2,6 +2,33 @@ cmake_minimum_required(VERSION 3.5)
 project(vrpn_vendor)
 
 find_package(ament_cmake REQUIRED)
+
+# from https://github.com/ament/ament_cmake/pull/390
+# should be backported to humble with https://github.com/ament/ament_cmake/pull/418
+macro(ament_add_default_options)
+  # TODO(methylDragon): Would be good to parse args to skip options next time.
+  set(aado_options EXCLUDE_BUILD_SHARED_LIBS)
+  set(aado_oneValueArgs)
+  set(aado_multiValueArgs)
+  cmake_parse_arguments(ament_add_default_options
+    "${aado_options}" "${aado_oneValueArgs}" "${aado_multiValueArgs}" ${ARGN}
+  )
+
+  if(NOT ament_add_default_options_EXCLUDE_BUILD_SHARED_LIBS)
+    option(
+      BUILD_SHARED_LIBS
+      "Global flag to cause add_library() to create shared libraries if on. \
+       If set to true, this will cause all libraries to be built shared \
+       unless the library was explicitly added as a static library."
+      ON)
+  endif()
+
+  unset(aado_options)
+  unset(aado_oneValueArgs)
+  unset(aado_multiValueArgs)
+endmacro()
+
+
 ament_add_default_options()
 
 include(ExternalProject)
