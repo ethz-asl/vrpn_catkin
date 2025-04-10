@@ -1,0 +1,39 @@
+name: Build vrpn_catkin
+on: [push]
+
+jobs:
+  build:
+    runs-on: [self-hosted, linux]
+    env:
+      rosdistro: ${{ matrix.ubuntu == '20.04' && 'noetic' || 'one' }}
+    strategy:
+      fail-fast: false
+      matrix:
+        gcc: ['9', '10', '11']
+        ubuntu: ['20.04', '22.04']
+    container:
+      image: omavteam/ubuntu-omav-ros:ros-ros-base-${{ matrix.ubuntu }}
+      credentials:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+    name: Ubuntu ${{ matrix.ubuntu }} - GCC ${{ matrix.gcc }}
+    steps:
+      - name: Switch GCC version
+        run: |
+          update-alternatives --set gcc /usr/bin/gcc-${{ matrix.gcc }}
+          update-alternatives --set g++ /usr/bin/g++-${{ matrix.gcc}}
+          gcc --version
+          g++ --version
+
+      - uses: actions/checkout@v4
+        name: Checkout vrpn_catkin
+        with:
+          repository: ethz-asl/vrpn_catkin
+          path: catkin_ws/src/vrpn_catkin
+
+      - name: Build vrpn_catkin
+        run: source /opt/ros/$rosdistro/setup.bash && catkin build vrpn_catkin && source ${GITHUB_WORKSPACE}/catkin_ws/devel/setup.bash
+        working-directory: catkin_ws
+        shell: bash
+
+
