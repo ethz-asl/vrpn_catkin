@@ -1,4 +1,4 @@
-name: Build vrpn_catkin
+name: Build vrpn_catkin (ROS1)
 on: [push]
 
 jobs:
@@ -24,6 +24,14 @@ jobs:
           update-alternatives --set g++ /usr/bin/g++-${{ matrix.gcc}}
           gcc --version
           g++ --version
+
+      - uses: actions/checkout@v4
+        name: Checkout catkin_simple
+        with:
+          repository: catkin/catkin_simple
+          ref: master
+          token: ${{ secrets.PAT }}
+          path: catkin_ws/src/catkin_simple
 
       - uses: actions/checkout@v4
         name: Checkout vrpn_catkin
