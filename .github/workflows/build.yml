@@ -30,7 +30,6 @@ jobs:
         with:
           repository: catkin/catkin_simple
           ref: master
-          token: ${{ secrets.PAT }}
           path: catkin_ws/src/catkin_simple
 
       - uses: actions/checkout@v4
